@@ -8,6 +8,7 @@ Un bel giorno la mamma di Corrado gli manda un messaggio vocale su Whatsapp, chi
 
 ## Presentazione video
 [Link al video su Youtube](https://www.youtube.com/watch?v=0JMlL2yl6KE)
+[Slide utilizzate](https://www.slideshare.net/secret/66X2yUISkNfQm8)
 
 ## User story implementate
 ### Basilari
