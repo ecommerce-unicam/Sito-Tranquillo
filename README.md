@@ -6,6 +6,9 @@ Un bel giorno la mamma di Corrado gli manda un messaggio vocale su Whatsapp, chi
 ## Live demo
 [Link all'app deployata su Heroku](https://sito-tranquillo-develop.herokuapp.com)
 
+## Presentazione video
+[Link al video su Youtube](https://www.youtube.com/watch?v=0JMlL2yl6KE)
+
 ## User story implementate
 ### Basilari
 * Come admin voglio poter accedere ad un’area privata tramite username e password
