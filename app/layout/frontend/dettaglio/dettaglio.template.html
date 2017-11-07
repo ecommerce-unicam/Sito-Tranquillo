@@ -1,12 +1,122 @@
-<h3>Dettagli Prodotto {{$ctrl.id}}</h3>
-<div ng-if="$ctrl.prodotto">
-    <p><b>{{ $ctrl.prodotto.nome }}</b></p>
-    <p class="prezzo">€ {{$ctrl.prodotto.prezzo}}</p>
-    <p class="descrizione"> {{ $ctrl.prodotto.descrizioneLunga }} </p>
-</div>
+<article class="" ng-if="$ctrl.prodotto">
 
-<div ng-if="!$ctrl.prodotto">
-    <h4>Prodotto non trovato</h4>
-</div>
-<hr>
-<a href="/">Torna alla lista prodotti</a>
+    <div class="wrapper w3-container pa-15">
+        <a href="/"><button class="w3-btn w3-blue"><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Torna alla lista dei prodotti</button></a>
+    </div>
+    
+    <hr style="padding: 0; margin: 0;">
+
+    <div class="w3-panel w3-light-gray">
+        <div class="wrapper">
+            <div class="w3-show-inline-block w3-left">
+                <h1 class="retroshadow">
+                    <span class="w3-xxxlarge">
+                        <b>{{ $ctrl.prodotto.nome }}</b>
+                    </span>
+                </h1>
+            </div>
+            <div class="w3-show-inline-block w3-right">
+                <h2>
+                    <span class="w3-xxlarge">€ {{$ctrl.prodotto.prezzo}}</span>
+                </h2>
+                <span>
+                    <small>(prezzi iva esclusa)</small>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="margin-top-2 w3-row">
+            <div class="w3-container w3-col l6 m12 s12">
+            <picture class="photo-dettaglio">
+                <img class="w3-animate-fading" src="../../../images/uploads/{{$ctrl.prodotto.urlImmagine}}" />
+            </picture>
+        </div>
+            <div class="w3-container w3-col l6 m12 s12">
+                <p>
+                    Codice: <span class="w3-large">{{$ctrl.id}}</span>
+                </p>
+
+                <p>
+                    Disponibilità: <span class="w3-large">{{$ctrl.prodotto.giacenza}}</span>
+                </p>
+                <p>
+                        <button ng-show="preferitiUtente.indexOf($ctrl.id) < 0 || preferitiUtente === undefined" class="w3-button" ng-click="$ctrl.aggiungiAPreferiti($ctrl.id)">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>                            
+                        </button>
+                        <button ng-show="preferitiUtente.indexOf($ctrl.id) >= 0" class="w3-button" ng-click="$ctrl.togliDaiPreferiti($ctrl.id)">
+                            <i class="fa fa-heart" style="color:red" aria-hidden="true"></i>                            
+                        </button>
+                    </p>
+
+                <section class="margin-top-1 w3-row">
+                    <div class="">
+                        <!-- 
+                            <div class="w3-container w3-block quantita-nav">
+                                <div class="quantita-button">
+                                    <button class="w3-button w3-black">
+                                        <span class="">-</span>
+                                    </button>
+                                </div>
+                                <div class="quantita">
+                                    <input name="prod_quantita" value="1" maxlength="5" step="1" value="1" id="prod_quantita" type="number">
+                                </div>
+                                <div class="quantita-button">
+                                    <button class="w3-button w3-teal">+</button>
+                                </div>
+                            </div>
+                        -->
+                        <div>
+                            <button class="w3-btn w3-teal" ng-click="$ctrl.mettiNelCarrello($ctrl.id)"><i class="fa fa-shopping-cart fa-2x"></i><span class="w3-large"> Aggiungi al carrello</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="margin-top-2 margin-bottom-1 w3-cell-row w3-mobile">
+            <div class="w3-container w3-cell">
+                <h3 class="w3-tag w3-teal">Specifiche</h3>
+                <p>
+                    <ul class="w3-container">
+                        <li>Peso: {{$ctrl.prodotto.specifiche.peso}} kg</li>
+                        <li>Dimensioni: {{$ctrl.prodotto.specifiche.dimensioni.lunghezza}}x{{$ctrl.prodotto.specifiche.dimensioni.larghezza}}x{{$ctrl.prodotto.specifiche.dimensioni.altezza}}</li>
+                        <li>Colore: {{$ctrl.prodotto.specifiche.colore}}</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="w3-container w3-cell w3-mobile">
+                <h3 class="w3-tag w3-teal">Descrizione</h3>
+                <p class="w3-container w3-padding"> {{ $ctrl.prodotto.descrizioneLunga }}</p>
+            </div>
+        </div>
+
+        <div ng-if="!$ctrl.prodotto">
+            <span class="w3-tag w3-jumbo w3-red">P</span>
+            <span class="w3-tag w3-jumbo">R</span>
+            <span class="w3-tag w3-jumbo w3-yellow">O</span>
+            <span class="w3-tag w3-jumbo">D</span>
+            <span class="w3-tag w3-jumbo w3-red">O</span>
+            <span class="w3-tag w3-jumbo">T</span>
+            <span class="w3-tag w3-jumbo w3-yellow">T</span>
+            <span class="w3-tag w3-jumbo">O</span>
+            <br>
+            <span class="w3-tag w3-jumbo w3-red">N</span>
+            <span class="w3-tag w3-jumbo">O</span>
+            <span class="w3-tag w3-jumbo w3-yellow">N</span>
+            <br>
+            <span class="w3-tag w3-jumbo w3-red">T</span>
+            <span class="w3-tag w3-jumbo">R</span>
+            <span class="w3-tag w3-jumbo w3-yellow">O</span>
+            <span class="w3-tag w3-jumbo">V</span>
+            <span class="w3-tag w3-jumbo w3-red">A</span>
+            <span class="w3-tag w3-jumbo">T</span>
+            <span class="w3-tag w3-jumbo w3-yellow">O</span>
+        </div>
+
+    </div>
+
+</article>

@@ -1,0 +1,31 @@
+<section class="w3-container w3-row" style="margin: auto;">
+    <h2 class="w3-center">Modifica permessi utenti</h2>
+
+    <article class="w3-col l6 m6 s12 w3-margin">
+        <form class="w3-center">
+            <label class="w3-text-blue">
+                <b>Ricerca:</b>
+                <input class="w3-input w3-border" for="search" type="search" nome="search" id="product-search" pattern="[^'\x22]+" title="Invalid input"
+                    placeholder="Cerca utente" ng-model="$ctrl.query" style="width: 400px; margin:auto;"/>
+            </label>
+    </form>
+    </article>
+
+    <article class="w3-margin">
+    <table class="w3-col l6 m6 s12 w3-table-all w3-centered" style="max-width: 400px; margin: auto;">
+        <thead>
+            <tr class="w3-red">
+                <th><b>Nome Utente</b></th>
+            </tr>
+        </thead>
+        <article>
+            <tr class="w3-hover-green" ng-repeat="utente in $ctrl.utenti | filter:$ctrl.query" style="cursor: pointer;">
+                <td ui-sref="dettaglioUtente({id: utente._id})">
+                    {{utente.nome}}{{utente.cognome}}    
+                </td>
+            </tr>
+        </article>
+    </table>
+</article>
+
+</section>

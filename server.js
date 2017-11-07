@@ -1,9 +1,12 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var ApiModel = require('./config/api/controllers/apiModel.js');
 
-var dbUrl = require('./config/db.js');
+// Carico i modelli del database
+var modelloProdotto = require('./server/models/prodotto');
+var modelloUtente = require('./server/models/utente');
+
+var dbUrl = require('./server/config/db.js');
 
 var app = express();
 app.use(bodyParser.urlencoded({
@@ -35,9 +38,22 @@ mongoose.connect(MONGODB_URI, { useMongoClient: true }, function(err, database) 
     db = database;
     console.log("Connessione al database riuscita");
 
+    // importo le api per gli upload delle immagini
+    var routeImmagini = require('./server/routes/routeImmagini');
+    routeImmagini(app);
     // importo le api per le operazioni nel db
-    var apiRoutes = require('./config/api/routes/apiRoutes.js');
-    apiRoutes(app, db);
+    var routeProdotti = require('./server/routes/routeProdotti');
+    routeProdotti(app, db);
+    var routeUtenti = require('./server/routes/routeUtenti');
+    routeUtenti(app, db);
+    var routeGeografia = require('./server/routes/routeGeografia');
+    routeGeografia(app);
+    var routeBootstrap = require('./server/routes/routeBootstrap');
+    routeBootstrap(app, db);
+
+    var routeAdmin = require('./server/routes/routeAdmin');
+    app.use('/api/v1.0/admin/', routeAdmin); // metto /api/v1.0//admin come prefisso per le varie richieste
+
     //app.use(app.router);
     app.use(function(req, res) {
         res.sendFile(__dirname + '/app/index.html');

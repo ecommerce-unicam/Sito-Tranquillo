@@ -1,0 +1,50 @@
+<div ng-controller="navbarCtrl">
+    <header id="header" class="clearfix">
+        <section class="w3-container w3-padding w3-light-grey">
+            <div class="main-header">
+                <div ng-include="navbarTemplate"></div>
+            </div>
+        </section>
+
+        <!-- Background header image -->
+        <div class="banner"></div>
+
+        <!-- LOGO -->
+        <section class="loghi">
+            <a ui-sref="home">
+                <picture><img id="logo1" src="images/sito-tranq.png"></img>
+            </a>
+            </picture>
+            <picture><img id="logo2" src="icons/sito-tranq-favicon.png"></img>
+            </picture>
+        </section>
+    </header>
+
+
+
+<!-- Navigation-->
+<nav>
+    <div class="w3-bar w3-teal">
+        <div>
+            <a ui-sref="root" class="w3-bar-item w3-button">Home</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Estrattori <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <!-- <a ui-sref="invalid" class="w3-bar-item w3-button">a Pale eoliche</a> -->
+                    <a href="#" class="w3-bar-item w3-button">a Dubbi</a>                    
+                    <a href="#" class="w3-bar-item w3-button">a Perplessità</a>
+                    <a href="http://computerscience.unicam.it/marcantoni/" class="w3-bar-item w3-button">a Stati d'animo</a>
+                </div>
+            </div>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Frullatori <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="#" class="w3-bar-item w3-button">Ad immersione</a>
+                    <a href="#" class="w3-bar-item w3-button">Atomici</a>
+                </div>
+            </div>
+            <!-- qui i bottoni a seguire -->
+            <p ng-show="isAdmin === 'true'"><a ui-sref="admin" class="w3-bar-item w3-button">Area admin</a></p>
+        </div>
+    </nav>
+</div>

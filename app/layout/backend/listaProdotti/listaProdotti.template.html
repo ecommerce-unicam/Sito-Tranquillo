@@ -1,0 +1,81 @@
+<section>
+    
+    <menu class="w3-light-gray">
+        
+        <div class="w3-center">
+            <ul>
+                    <li class="w3-padding w3-center w3-show-inline-block">
+                <form class="w3-center w3-show-inline-block">
+                        <label class="w3-text-blue">
+                            <b>Ricerca:</b>
+                            <input class="w3-input w3-border" for="search" type="search" nome="search" id="product-search" pattern="[^'\x22]+" title="Invalid input"
+                                placeholder="Cerca qui un prodotto" ng-model="$ctrl.query" />
+                        </label>
+                </form>
+            </li>
+            <li class="w3-padding w3-center w3-show-inline-block">
+                <form class="w3-center w3-show-inline-block">
+                    
+                        <label class="w3-text-blue">
+                            <b>Ordina per:</b>
+                        </label>
+                        <select class="w3-select w3-border" class="minimal" name="ordinamento" ng-model="$ctrl.ordinamento">
+                            <option value="nome">Nome</option>
+                            <option value="prezzo">Prezzo ascendente</option>
+                            <option value="-prezzo">Prezzo discendente</option>
+                        </select>
+                    </form>
+                    </li>
+                    <li class="w3-padding w3-center w3-show-inline-block">
+                        <div>
+                            <a href="/admin/aggiuntaProdotti" class="w3-border pa-15">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Aggiungi Prodotto</a>
+                        </div>
+                    </li>
+            </ul>
+        </div>
+
+    </menu>
+
+</section>
+
+<main class="main">
+    
+        <div class="contenitoreSchedeBreve">
+            <div class="container-prodotto-breve w3-margin w3-card-4" ng-repeat="elemento in $ctrl.prodotti | filter:$ctrl.query | orderBy:$ctrl.ordinamento">
+
+                <!-- contenitore sinistro dove risiede l'immagine -->
+                <div class="contenitore-immagine">
+                    <div class="photo">
+                        <a ui-sref="dettaglio({id: elemento._id})"><img src="../../../images/uploads/{{elemento.urlImmagine}}" /></a>
+                    </div>
+                </div>
+                <!-- contenitore destro bianco dove risiede il testo -->
+                <div class="contenitore-text">
+                    <div class="header">
+                        <h5 class="w3-text-orange">
+                            <a ui-sref="dettaglio({id: elemento._id})">{{elemento.nome}}</a>
+                        </h5>
+                    </div>
+                    <p class="w3-text-red">
+                        {{elemento.prezzo}} €
+                    </p>
+                    <p>
+                        {{elemento.descrizioneBreve}}.
+                    </p>
+                    <div class="w3-margin-top">
+                        <div class="w3-container w3-cell">
+                            <p>qty</p><p> {{elemento.giacenza}}</p>
+                        </div>
+    
+                        <div class="w3-container w3-cell">
+                            <a href="/admin/modificaProdotti/{{elemento._id}}"><button class="w3-button w3-red"><i class="fa fa-pencil fa-fw"></i></button></a>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+    </main>

@@ -4,12 +4,12 @@
 <!-- Head -->
 
 <head>
-    <title>Home | Sito tranquillo - Approvato dalle mamme!</title>
-    <base href="/">
+    <title ng-bind="$state.current.data.titolo +' - Sito Tranquillo'"></title>
+    <base href="/" />
     <meta charset="utf-8">
     <meta name="author" content="co-authored by Riccardo Cannella, Corrado Petrelli, Andrea Salvatori, Michele Biondi">
     <meta name="generator" content="Visual Studio Code">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Mobile device -->
     <meta name="description" content="E-commerce per la vendita di estrattori di cui ti puoi fidare!!">
     <meta HTTP-EQUIV="keywords" content="sito site tranquillo quiet negozio shop vendita sale estrattori accessori cucina">
@@ -20,157 +20,42 @@
     <link rel="icon" type="image/png" href="icons/sito-tranq-favicon.png" sizes="192x192">
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/select.css">
     <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700,600italic,400italic,700italic,600' rel='stylesheet'>
     <!-- Angular -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-messages.min.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
-    <script src="layout/frontend/home/home.module.js"></script>
+    <script src="scripts/ng-file-upload-12.2.13/ng-file-upload.min.js"></script>
+    <script src="scripts/ng-file-upload-12.2.13/ng-file-upload-shim.min.js"></script>
     <script src="layout/frontend/home/home.component.js"></script>
-    <script src="layout/frontend/invalid/invalid.module.js"></script>
-    <script src="layout/frontend/invalid/invalid.component.js"></script>
-    <script src="layout/frontend/dettaglio/dettaglio.module.js"></script>
     <script src="layout/frontend/dettaglio/dettaglio.component.js"></script>
+    <script src="layout/frontend/autenticazione/autenticazione.component.js"></script>
+    <script src="layout/frontend/autenticazione/autenticazione.controller.js"></script>
+    <script src="layout/frontend/condizioni/condizioni.component.js"></script>
+    <script src="layout/frontend/about/about.component.js"></script>
+    <script src="layout/frontend/informativa/informativa.component.js"></script>
+    <script src="layout/frontend/recupero/recupero.component.js"></script>
+    <script src="layout/frontend/reset/reset.component.js"></script>
+    <script src="layout/backend/adminPanel.component.js"></script>
+    <script src="layout/backend/listaUtenti/listaUtenti.component.js"></script>
+    <script src="layout/backend/dettaglioUtente/dettaglioUtente.component.js"></script>
+    <script src="layout/backend/aggiuntaProdotti/aggiuntaProdotti.component.js"></script>
+    <script src="layout/backend/modificaProdotti/modificaProdotti.component.js"></script>
+    <script src="layout/backend/settaggi/settaggi.component.js"></script>
+    <script src="layout/backend/listaProdotti/listaProdotti.component.js"></script>
+    <script src="layout/frontend/carrello/carrello.component.js"></script>
+    <script src="layout/frontend/utente/utente.component.js"></script>
+    <script src="layout/frontend/header/navbar.controller.js"></script>
+    <script src="layout/frontend/storiaAcquisti/storiaAcquisti.component.js"></script>
+    <script src="layout/bootstrap/bootstrap.component.js"></script>
+
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="sticky-footer">
-        <header id="header" class="clearfix">
-            <section class="w3-container w3-light-grey">
-                <div class="main-header">
-                    <div class="w3-show-inline-block e3-left">
-                        <div class="w3-btn w3-red w3-hide-small w3-hide-medium">
-                            <a href="tel:0039-000-000-0000" title="Tel: (+39) 00 000 000 00"><i class="fa fa-phone fa-lg"> </i><span class="hidden-xs"> Tel: (+39) 00 000 000 00</span></a>
-                        </div>
-                        <div class="w3-btn w3-white w3-hide-small">
-                            <a href="mailto:info@sitotranquillo.it?&subject=info%20contatto&body=Salve,%20la%20contatto%20per%20....." target="_top"><i class="fa fa-envelope fa-lg"> </i><span> Scrivici una e-Mail</span></a>
-                        </div>
-                    </div>
-                    <div class="w3-show-inline-block w3-right">
-                        <div class="w3-btn w3-blue">
-                            <a href="#carrello" id="cart_contents"><i class="fa fa-shopping-cart fa-lg"></i> <span class="hidden-xs hidden-sm"> Carrello</span></a>
-                        </div>
-                        <div class="w3-btn w3-green">
-                            <a href="#login" id="button-599c66d53f8f7812940751"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Login</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Background header image -->
-            <div class="banner"></div>
-
-            <!-- LOGO -->
-            <section class="loghi">
-                <picture><img id="logo1" src="images/sito-tranq.png"></img>
-                </picture>
-                <picture><img id="logo2" src="icons/sito-tranq-favicon.png"></img>
-                </picture>
-            </section>
-        </header>
-
-
-
-        <!-- Navigation and login-->
-        <nav>
-            <div class="w3-bar w3-teal">
-                <div>
-                    <a href="/" class="w3-bar-item w3-button">Home</a>
-                    <div class="w3-dropdown-hover">
-                        <button class="w3-button">Estrattori <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="/invalidPage" class="w3-bar-item w3-button">Link 1</a>
-                            <a href="/pippo" class="w3-bar-item w3-button">Link 2</a>
-                            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-                        </div>
-                    </div>
-                    <div class="w3-dropdown-hover">
-
-                        <button class="w3-button">Frullatori <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                            <a href="#" class="w3-bar-item w3-button">Link 1</a>
-                            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-                            <a href="#" class="w3-bar-item w3-button">Link 3</a>
-                        </div>
-                    </div>
-                    <a href="#" class="w3-bar-item w3-button">Link 1</a>
-                    <a href="#" class="w3-bar-item w3-button">Link 2</a>
-                </div>
-                <input type="text" class="w3-right w3-bar-item w3-input" placeholder="Cerca qui...">
-                <a href="#" class="w3-right w3-bar-item w3-button"><i class="fa fa-search" aria-hidden="true"></i></a>
-            </div>
-        </nav>
-        <!-- Main -->
-        <hr>
-        <div class="clearfix">
-            <div ng-view></div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="w3-text-white w3-teal center">
-            <section class="w3-row">
-                <div class="w3-col l4 s12">
-                    <div>
-                        <h4>Seguici su</h4>
-                        <div>
-                            <a href="https://www.facebook.com/monclick/" target="_blank"><i class="fa fa-facebook fa-2x margin-left-right" aria-hidden="true"></i></a>
-                            <a href="https://plus.google.com/+monclick" target="_blank"><i class="fa fa-google-plus fa-2x margin-left-right" aria-hidden="true"></i></a>
-                            <a href="https://www.linkedin.com/company/monclick" target="_blank"><i class="fa fa-twitter fa-2x margin-left-right" aria-hidden="true"></i></a>
-                        </div>
-                        <h5>cogli le offerte per primo</h5>
-                        <div>
-                            <a href="https://t.me/telegram" target="_blank"><i class="w3-margin-bottom fa fa-telegram fa-2x" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-col l4 s12">
-                    <div>
-                        <h4>Info utili</h4>
-                        <ul>
-                            <li><a href="#chi-siamo">Chi siamo</a></li>
-                            <li><a href="/condizioni-di-vendita">Condizioni di vendita</a></li>
-                            <li><a href="/programmi-di-affiliazione">Programmi di affiliazione</a></li>
-                            <li><a href="/opinioni_clienti">Opinioni dei Clienti</a></li>
-                            <li><a href="/area_stampa">Area stampa</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="w3-col l4 s12">
-                    <h4>Pagamenti</h4>
-                    <div>
-                        <span>paypal</span>
-                    </div>
-                    <div>
-                        <span>mastercard</span>
-                    </div>
-                    <div>
-                        <span>postepay</span>
-                    </div>
-                    <div>
-                        <span>Visa</span>
-                    </div>
-                    <div>
-                        <a href="https://t.me/shopbot">Telegram shop bot</a></li>
-                    </div>
-
-                </div>
-            </section>
-
-            <section class="wrapper-footer w3-border-top">
-                <div class="w3-small pa-15">
-                    <div class="" style="float: left;">
-                        <span>© 2017 Sito Tranquillo S.r.l. P.IVA: 00000000000 | Cap. Soc.: € 0.10 non in liquidazione - <code>GNU's not Unix.</code></span>
-                    </div>
-                    <div style="float: right;">
-                        <span>Webmaster<a target="_blank" href="https://github.com/ecommerce-unicam"><strong>  Ecommerce-Unicam</strong></a></span>
-                    </div>
-                </div>
-            </section>
-        </footer>
+    <div ui-view></div>
 </body>
 
 </html>

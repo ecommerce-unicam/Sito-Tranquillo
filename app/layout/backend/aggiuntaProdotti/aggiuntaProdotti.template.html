@@ -1,0 +1,106 @@
+<section class="">
+
+    <div class="wrapper">
+
+        <h2 class="w3-center w3-text-teal">Aggiungi prodotto</h2>
+
+        <form class="margin-top-1 margin-bottom-1" ng-submit="$ctrl.aggiungiProdotto()" name="$ctrl.form" style="margin: auto;">
+
+            <div class="w3-row">
+
+                <div class="w3-col l6 m6 s12 w3-content" style="width: 60vh;">
+
+                    <div class="w3-margin">
+                        <label for="nome">Nome:</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" class="w3-input w3-border w3-center w3-light-grey" type="text" required ng-model="$ctrl.prodotto.nome" class="form-control"
+                                id="nome">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="prezzo">Prezzo:</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required name="price" min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" ng-model="$ctrl.prodotto.prezzo"
+                                class="form-control" id="prezzo">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="giacenza">Giacenza:</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required ng-model="$ctrl.prodotto.giacenza" class="form-control" id="giacenza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="descrizioneBreve">Descrizione Breve:</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="text" required ng-model="$ctrl.prodotto.descrizioneBreve" class="form-control" id="descrizioneBreve">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="descrizioneLunga">Descrizione Lunga:</label>
+                        <div>
+                                <textarea class="w3-input w3-border w3-light-grey" maxlenght="200" cols="10" rows="10" required ng-model="$ctrl.prodotto.descrizioneLunga" class="form-control" id="descrizioneLunga">
+                                </textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w3-col l6 m6 s12" style="width: 60vh">
+
+                    <div class="w3-margin">
+                        <label for="peso">Peso (Kg):</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required name="peso" min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$" ng-model="$ctrl.prodotto.specifiche.peso"
+                                class="form-control" id="peso">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="lunghezza">Lunghezza (mm):</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required name="lunghezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.lunghezza"
+                                class="form-control" id="lunghezza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="larghezza">Larghezza (mm):</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required name="larghezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.larghezza"
+                                class="form-control" id="larghezza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="altezza">Altezza (mm):</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="number" required name="altezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.altezza" class="form-control"
+                                id="altezza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="colore">Colore:</label>
+                        <div>
+                            <input class="w3-input w3-border w3-center w3-light-grey" type="text" required name="colore" ng-model="$ctrl.prodotto.specifiche.colore" class="form-control" id="colore">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="immagine">Immagine:</label>
+                        <div>
+                            <input class="w3-btn w3-border w3-round-large w3-center w3-red" type="file" required name="immagine" ng-model="$ctrl.immagine" class="form-control" id="immagine" ngf-select ngf-pattern="'image/*'"
+                                accept="image/*" ngf-max-size="3MB">
+                        </div>
+                        <div class="w3-margin">
+                            Anteprima immagine:
+                            <img style="width: 150px;" ngf-thumbnail="$ctrl.immagine || '/thumb.jpg'"
+                            />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w3-block w3-center margin-top-1 margin-bottom-1">
+                <input type="reset" class="w3-button w3-border w3-round w3-xlarge" value="Annulla">
+                <input type="submit" class="w3-button w3-border w3-round w3-xlarge" value="Aggiungi">
+            </div>
+            
+        </form>

@@ -1,0 +1,56 @@
+<div ng-hide="!$ctrl.vuota">
+    <section>
+        <div class="w3-container w3-center margin-top-2 margin-bottom-1">
+            <p class="w3-tag w3-padding w3-indigo">
+                <span class="w3-xxlarge">
+                    <i class="fa fa-frown-o" aria-hidden="true"></i> Nessun acquisto effettuato</span>
+            </p>
+        </div>
+    </section>
+</div>
+
+
+<div ng-repeat="acquisto in $ctrl.storiaAcquisti" class="main">
+
+    <div class="w3-panel w3-border-bottom">
+        <p>Data : {{acquisto.data_acquisto | date:'yyyy-MM-dd'}} - Ora: {{acquisto.data_acquisto | date:'HH:mm:ss'}} </p>
+    </div>
+
+    <div class="contenitoreSchedeBreve" style="height: 210px;">
+
+
+        <div class="container-prodotto-breve w3-margin w3-card-4" ng-repeat="elemento in acquisto.prodotti">
+
+            <!-- contenitore sinistro dove risiede l'immagine -->
+            <div class="contenitore-immagine">
+                <div class="photo">
+                    <a ui-sref="dettaglio({id: elemento._id})">
+                        <img src="../../../images/uploads/{{elemento.urlImmagine}}" />
+                    </a>
+                </div>
+            </div>
+            <!-- contenitore destro bianco dove risiede il testo -->
+            <div class="contenitore-text">
+                <div class="header">
+                    <h5 class="w3-text-orange">
+                        <a ui-sref="dettaglio({id: elemento._id})">{{elemento.nome}}</a>
+                    </h5>
+                </div>
+                <p class="w3-text-red">
+                    <span class="w3-text-black">Prezzo: </span>{{elemento.prezzo}} €
+                </p>
+
+                <div class="w3-margin-top">
+                    <div class="w3-container w3-cell">
+                        <p>Quantità:
+                            <span> {{elemento.quantita}}</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

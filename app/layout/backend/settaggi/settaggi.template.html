@@ -1,0 +1,87 @@
+<div class="wrapper w3-row">
+
+    <h2 class="w3-center w3-text-teal">Settaggi sito</h2>
+    <div class="w3-col l6 m6 s12">
+        <form class="margin-top-1 margin-bottom-1" ng-submit="$ctrl.caricaCopertina()" name="$ctrl.form" style="margin: auto;">
+
+            <h4>Modifica Immagine Copertina Sito</h4>
+
+            <div class="w3-col l6 m6 s12" style="width: 60vh">
+
+                <div class="w3-margin">
+                    <label for="immagine">
+                        Immagine (peso minore di 1MB, lato lungo min 1280px max 3840px):
+                    </label>
+                    <div ng-show="copertinaCaricata === 0" style="background-color: yellow; color:red">
+                        L'immagine non rispetta i requisiti, caricane un'altra.
+                    </div>
+                    <div ng-show="copertinaCaricata === 1" style="background-color: green">
+                        L'immagine di copertina è stata aggiornata.
+                    </div>
+                    <div>
+                        <input type="file" class="w3-btn w3-border w3-round-large w3-center w3-red" name="immagine" ng-model="$ctrl.immagine" id="immagine" ngf-select ngf-pattern="'.jpg'" accept=".jpg" ngf-max-size="1MB">
+                    </div>
+                    <div class="w3-margin" ng-show="$ctrl.immagine">
+                        <h5>Anteprima immagine:</h5>
+                        <img style="width: 300px; " ngf-thumbnail="$ctrl.immagine" />
+                        <p ng-show="erroreCaricamento === 1 ">C'è stato un errore, riprova.</p>
+                    </div>
+                    <div class="w3-margin-top">
+                    <input type="button" class="w3-button w3-border w3-round w3-xlarge" ng-click="$ctrl.reset()" value="Annulla">
+                    <input type="submit" class="w3-button w3-border w3-round w3-xlarge" value="Carica">
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="w3-col l6 m6 s12">
+        <form class="margin-top-1 margin-bottom-1" ng-submit="$ctrl.modificaSettaggi()" name="$ctrl.formEmail" style="margin: auto;">
+
+            <h4>Modifica settaggi per invio email</h4>
+
+            <div class="w3-col l6 m6 s12" style="width: 60vh">
+
+                <div class="w3-margin">
+                    <label for="host">
+                        Server smtp:
+                    </label>
+                    <div>
+                        <input type="text" class="w3-btn w3-border w3-round-large w3-center" name="host" ng-model="$ctrl.host" id="host">
+                    </div>
+                    <label for="port">
+                        Porta:
+                    </label>
+                    <div>
+                        <input type="number" class="w3-btn w3-border w3-round-large w3-center" name="port" ng-model="$ctrl.port" id="port">
+                    </div>
+                    <label for="secure">
+                        Sicurezza:
+                    </label>
+                    <p class="w3-container w3-border w3-margin-top">
+                        <input class="w3-check" ng-model="$ctrl.secure" type="checkbox" name="secure"> Usa sicurezza TLS
+                    </p>
+                    <label for="user">
+                        Username (email):
+                    </label>
+                    <div>
+                        <input type="email" class="w3-btn w3-border w3-round-large w3-center w3-margin-top" name="user" ng-model="$ctrl.user" id="user">
+                    </div>
+                    <label for="pass">
+                        Password:
+                    </label>
+                    <div>
+                        <input type="password" class="w3-btn w3-border w3-round-large w3-center" name="pass" ng-model="$ctrl.pass" id="pass">
+                    </div>
+                    <div class="w3-margin-top">                            
+                    <input type="button" class="w3-button w3-border w3-round w3-xlarge" ng-click="$ctrl.reset()" value="Annulla">
+                    <input type="submit" class="w3-button w3-border w3-round w3-xlarge" value="Modifica">
+                    </div>          
+                </div>
+            </div>
+        </form>
+        <div ng-show="settaggiModificati === 1">Settaggi email modificati.</div>
+        <div ng-show="settaggiModificati === 0">Settaggi email non modificati a causa di un errore interno, riprova.</div>
+        <div ng-show="parametriEmailMancanti === 1">Mancano alcuni parametri.</div>
+    </div>
+</div>

@@ -241,7 +241,7 @@ h1 {
 }
 
 h2 {
-    font-size: 30px
+    font-size: 30px;
 }
 
 h3 {
@@ -270,7 +270,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'Comfortaa', coursive;
+    /*font-family: "Segoe UI", Arial, sans-serif;*/
+    /*text-transform: uppercase;*/
     font-weight: 400;
     margin: 10px 0
 }
@@ -564,8 +566,12 @@ a {
 }
 
 .w3-bar {
+    position: relative;
     width: 100%;
-    overflow: hidden
+   /* Modificato da "hidden" a "visible" per comportamento z-index */
+   z-index: 2;
+    overflow: visible;
+    
 }
 
 .w3-center .w3-bar {

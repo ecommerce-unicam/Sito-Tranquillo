@@ -1,0 +1,30 @@
+
+<section class="wrapper w3-row w3-center">
+        
+        <h3 class="w3-col l12 m12 s12 w3-light-gray w3-text-teal">Recupero password</h3>
+    
+        <form ng-show="!formSubmitted" ng-submit="$ctrl.checkUtente()" name="$ctrl.form">
+            <div class="w3-col l12 m12 s12 margin-top-1 margin-bottom-1">
+                <div>
+                    <p>
+                        <label for="nome"><h4>Nome utente:</h4></label>
+                    <p>
+                    <div style="width: 45vh; margin: auto;">
+                        <input class="w3-input w3-border w3-center" type="text" ng-model="$ctrl.utente.nome" maxlength="60" id="nome" autofocus required>
+                    </div>
+                </div>  
+                <div>
+                    <div ng-show="utenteEsistente === 0">Questo nome utente non esiste.</div>
+                    <div class="margin-top-1">
+                        <input type="reset" class="w3-btn w3-border w3-border-red" value="Annulla">
+                        <input type="submit" class="w3-btn w3-border w3-border-green" value="Successivo">
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+        <div class="margin-top-2" ng-show="formSubmitted && utenteEsistente === 1">
+            <h3>E' stata inviata un'email all'indirizzo specificato in fase di registrazione.</h3>
+        </div>
+    
+</section>

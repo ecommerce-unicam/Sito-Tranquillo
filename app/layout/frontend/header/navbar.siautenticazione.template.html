@@ -1,0 +1,22 @@
+<div class="w3-show-inline-block w3-left w3-hide-small">
+    <div class="w3-btn w3-red w3-hide-small w3-hide-medium">
+        <a href="tel:0039-000-000-0000" title="Tel: (+39) 00 000 000 00"><i class="fa fa-phone fa-lg"> </i><span class="hidden-xs"> Tel: (+39) 00 000 000 00</span></a>
+    </div>
+    <div class="w3-btn w3-white w3-hide-small">
+        <a href="mailto:info@sitotranquillo.it?&subject=info%20contatto&body=Salve,%20la%20contatto%20per%20....." target="_top"><i class="fa fa-envelope fa-lg"> </i><span> Scrivici una e-Mail</span></a>
+    </div>
+</div>
+<!-- blocco destro - utente -->
+<div class="w3-show-inline-block w3-right">
+    <div class="w3-show-inline-block">
+        <a href="/carrello" id="cart_contents"><button class="w3-btn w3-blue"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></button></a>
+    </div>
+    <div class="w3-show-inline-block">
+        <button ng-click="logout()" class="w3-btn w3-red"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i> Esci</button>
+    </div>
+    <a ui-sref="utente">
+        <div class="w3-show-inline-block w3-btn w3-padding w3-tag w3-indigo w3-allerta">
+            <i class="fa fa-user fa-lg"></i> {{nome_utente}} 
+        </div>
+    </a>
+</div>

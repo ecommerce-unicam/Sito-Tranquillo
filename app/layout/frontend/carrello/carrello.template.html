@@ -1,0 +1,91 @@
+<section class="w3-padding w3-container margin-bottom-1">
+    
+    <p class="wrapper w3-container pa-15">
+            <a href="/"><button class="w3-btn w3-blue"><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Torna alla lista dei prodotti</button></a>            
+    </p>
+    
+    <h1 class="margin-top-1 margin-bottom-1 w3-center"><span class="w3-text-teal">Carrello</span></h1>
+
+    <article class="wrapper">
+        <div class="w3-row w3-hide-small">
+            <label class="w3-col l2 m2 w3-left-align">Immagine</label>
+            <label class="w3-col l3 m3 w3-left-align">Prodotto</label>
+            <label class="w3-col l1 m1 w3-center">Prezzo</label>
+            <label class="w3-col l2 m2 w3-center">Quantità</label>
+            <label class="w3-col l2 m2 w3-center">Rimuovi</label>
+            <label class="w3-col l2 m2 w3-right-align">Totale</label>
+        </div>
+        
+        <div ng-repeat="elemento in $ctrl.carrello">
+                
+            <div class="w3-row">
+                <hr />
+                <div class="w3-col l2 m2 s12 w3-center">
+                    <img src="../../../images/uploads/{{elemento.urlImmagine}}" style="width: 150px;" />
+                </div>
+               
+                    <div class="w3-col l3 m2 s12 w3-margin-top">
+                        <div class="">
+                            <a ui-sref="dettaglio({id: elemento._id})">
+                                <b>{{elemento.nome}}</b>
+                            </a>
+                        </div>
+                        <p class="w3-margin-top"> {{elemento.descrizioneBreve}}</p>
+                    </div>
+                    <div class="w3-col l1 m1 s4 w3-center w3-margin-top">
+                        <span class="w3-large">{{elemento.prezzo}} €</span>
+                    </div>
+                    <div class="w3-col l2 m2 s8 w3-center w3-margin-top">
+                        
+                        <input class="w3-input w3-border w3-center" type="number" 
+                                ng-model="elemento.quantita" ng-change="$ctrl.impostaNelCarrello(elemento._id,elemento.quantita,false)" 
+                                ng-model-options="{ updateOn: 'blur' , getterSetter: true }"
+                                ng-focus="$ctrl.occupied = true"
+                                ng-blur="$ctrl.occupied = false"
+                                style="width: 100px; margin:auto"
+                        >
+                        
+                        
+                    </div>
+                    <div class="w3-col l2 m2 s6 w3-center w3-margin-top">
+                        <button ng-click="$ctrl.rimuoviProdotto(elemento._id,elemento.quantita)" class="w3-button w3-red">Rimuovi</button>
+                    </div>
+                    <div class="w3-col l2 m2 s6 w3-right-align w3-margin-top">
+                        <span class="w3-large">{{elemento.totale}} €</span>
+                    </div>
+            </div>
+        </div>
+            
+        
+    </article>
+
+    
+
+<section class="wrapper">
+    
+    <hr>
+
+
+    <div class="w3-right w3-large" style="width: 300px">
+        <div class="pa-15">
+            <label class="w3-left">Totale provvisorio:</label>
+            <div class="w3-right"><span class="w3">{{$ctrl.totaleImporto}} €</span></div>
+        </div>
+        <div class="pa-15">
+            <label class="w3-left">Tasse (22%):</label>
+            <div class="w3-right"><span class="">{{$ctrl.tasse}}€</span></div>
+        </div>
+        <div class="pa-15">
+            <label class="w3-left">Spese spedizione:</label>
+            <div class="w3-right"><span class="">{{$ctrl.spedizione}} €</span></div>
+        </div>
+        <div class="pa-15">
+            <label class="w3-left">Totale finale:</label>
+            <div class="w3-right"><span class="">{{$ctrl.totaleFinale}}€</span></div>
+        </div>
+        <button class="w3-btn w3-green w3-right margin-top-1" ng-disabled="$ctrl.occupied == true" ng-click="$ctrl.acquistaTutto()">Acquista</button>
+    </div>
+
+</section>
+        
+</section>

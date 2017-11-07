@@ -1,0 +1,1 @@
+Questo file permette al server di capire che non c'è nessun admin, quindi proporrà di crearne uno.

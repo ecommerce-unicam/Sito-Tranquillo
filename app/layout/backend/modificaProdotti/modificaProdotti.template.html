@@ -1,0 +1,122 @@
+<section class="">
+<!--
+    <div>
+        <p class="wrapper w3-container pa-15">
+            <span class="w3-tag w3-blue w3-padding">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                <a href="/">Torna alla lista prodotti</a>
+            </span>
+        </p>
+        <hr style="padding: 0; margin: 0;">
+    </div>
+-->
+    <div class="wrapper">
+
+        <h3 class="w3-center">Modifica prodotto</h3>
+
+        <form class="margin-top-1 margin-bottom-1" ng-if="$ctrl.prodotto" ng-submit="$ctrl.aggiornaProdotto()" name="$ctrl.form"
+            style="margin: auto;">
+
+            <div class="w3-row">
+
+                <div class="w3-col l6 m6 s12 w3-content" style="width: 60vh;">
+
+                    <div class="w3-margin">
+                        <label for="nome">Nome:</label>
+                        <div>
+                            <input type="text" class="w3-input w3-border w3-center w3-light-grey" required ng-value="$ctrl.prodotto.nome" ng-model="$ctrl.prodotto.nome"
+                                id="nome">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="prezzo">Prezzo:</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required name="prezzo" min="0" value="0" step="0.01"
+                                pattern="^\d+(?:\.\d{1,2})?$" ng-model="$ctrl.prodotto.prezzo" id="prezzo">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="giacenza">Giacenza:</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required ng-model="$ctrl.prodotto.giacenza" id="giacenza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="descrizioneBreve">Descrizione Breve:</label>
+                        <div>
+                            <input type="text" class="w3-input w3-border w3-center w3-light-grey" required ng-model="$ctrl.prodotto.descrizioneBreve"
+                                id="descrizioneBreve">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="descrizioneLunga">Descrizione Lunga:</label>
+                        <div>
+                            <textarea class="w3-input w3-border w3-light-grey" maxlenght="200" cols="10" rows="10" required ng-model="$ctrl.prodotto.descrizioneLunga"
+                                id="descrizioneLunga">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="peso">Peso (Kg):</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required name="peso" min="0" value="0" step="0.01"
+                                pattern="^\d+(?:\.\d{1,2})?$" ng-model="$ctrl.prodotto.specifiche.peso" id="peso">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="lunghezza">Lunghezza (mm):</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required name="lunghezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.lunghezza"
+                                id="lunghezza">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w3-col l6 m6 s12" style="width: 60vh">
+
+                    <div class="w3-margin">
+                        <label for="larghezza">Larghezza (mm):</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required name="larghezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.larghezza"
+                                id="larghezza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="altezza">Altezza (mm):</label>
+                        <div>
+                            <input type="number" class="w3-input w3-border w3-center w3-light-grey" required name="altezza" min="0" value="0" ng-model="$ctrl.prodotto.specifiche.dimensioni.altezza"
+                                class="form-control" id="altezza">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="colore">Colore:</label>
+                        <div>
+                            <input type="text" class="w3-input w3-border w3-center w3-light-grey" required name="colore" ng-model="$ctrl.prodotto.specifiche.colore"
+                                class="form-control" id="colore">
+                        </div>
+                    </div>
+                    <div class="w3-margin">
+                        <label for="immagine">Immagine:</label>
+                        <div>
+                            <input type="file" class="w3-btn w3-border w3-round-large w3-center w3-red" name="immagine" ng-model="$ctrl.immagine" id="immagine"
+                                ngf-select ngf-pattern="'image/*'" accept="image/*" ngf-max-size="3MB">
+                        </div>
+                        <div class="w3-margin">
+                            <h5>Anteprima immagine:</h5>
+                            <img style="width: 150px;" ngf-thumbnail="$ctrl.immagine || '/thumb.jpg'" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w3-block w3-center margin-top-1 margin-bottom-1">
+                <input type="button" class="w3-button w3-border w3-round w3-xlarge" ng-click="$ctrl.reset()" value="Annulla">
+                <input type="submit" class="w3-button w3-border w3-round w3-xlarge" value="Aggiorna">
+            </div>
+        </form>
+
+        <h3 class="w3-tag w3-red w3-center w3-padding" ng-if="!$ctrl.prodotto">Prodotto non trovato</h3>
+    </div>
+</section>

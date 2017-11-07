@@ -1,24 +1,83 @@
-<h3>Prova Home</h3>
-<div>
-    <p>
-        Ricerca:
-        <input ng-model="$ctrl.query" />
-    </p>
-    <p>
-        Ordina per:
-        <select ng-model="$ctrl.ordinamento">
+<section>
+
+    <button class="w3-button w3-large w3-hide-large" ng-click="ShowHide()">&#9776;</button>
+
+    <!-- classi tolte per test = w3-collapse -->
+    <menu id="SidebaR" type="toolbar" ng-show="IsVisible" class="animate-show-hide sidebar w3-bar-block w3-card-2">
+
+        <form>
+            <li class="w3-padding">
+                <label class="w3-text-blue"><b>Ricerca:</b>
+        <input class="w3-input w3-border" for="search" type="search" nome="search" id="product-search" pattern="[^'\x22]+" title="Invalid input"
+        placeholder="Cerca qui un prodotto" ng-model="$ctrl.query" />
+                </label>
+            </li>
+        </form>
+        <form>
+            <li class="w3-padding">
+                <label class="w3-text-blue"><b>Ordina per:</b></label>
+                <select class="w3-select w3-border" class="minimal" name="ordinamento" ng-model="$ctrl.ordinamento">
             <option value="nome">Nome</option>
             <option value="prezzo">Prezzo ascendente</option>
             <option value="-prezzo">Prezzo discendente</option>
-        </select>
-    </p>
-</div>
-<div>
-    <ul>
-        <li ng-repeat="elemento in $ctrl.prodotti | filter:$ctrl.query | orderBy:$ctrl.ordinamento">
-            <a href="/{{elemento._id}}">{{elemento.nome}}</a>
-            <br> {{elemento.descrizioneBreve}}
-            <br> Prezzo: € {{elemento.prezzo}}
-        </li>
-    </ul>
-</div>
+            </select>
+
+            </li>
+        </form>
+
+    </menu>
+
+</section>
+
+<main class="main">
+
+    <div class="contenitoreSchedeBreve">
+        <div class="container-prodotto-breve w3-margin w3-card-4" ng-repeat="elemento in $ctrl.prodotti | filter:$ctrl.query | orderBy:$ctrl.ordinamento">
+
+            <!-- contenitore sinistro dove risiede l'immagine -->
+            <div class="contenitore-immagine">
+                <div class="photo">
+                    <a ui-sref="dettaglio({id: elemento._id})"><img src="../../../images/uploads/{{elemento.urlImmagine}}" /></a>
+                </div>
+            </div>
+            <!-- contenitore destro bianco dove risiede il testo -->
+            <div class="contenitore-text">
+                <div class="header w3-center">
+                    <h5 class="w3-text-orange">
+                        <a ui-sref="dettaglio({id: elemento._id})">{{elemento.nome}}</a>
+                    </h5>
+                </div>
+
+                <div class="w3-cell w3-cell-top">
+                    <p class="w3-text-red">
+                        {{elemento.prezzo}} €
+                    </p>
+                    <p>
+                        {{elemento.descrizioneBreve}}.
+                    </p>
+                    <p>
+                        <button ng-show="preferitiUtente.indexOf(elemento._id) < 0 || preferitiUtente === undefined" class="w3-button" ng-click="$ctrl.aggiungiAPreferiti(elemento._id)">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>                            
+                        </button>
+                        <button ng-show="preferitiUtente.indexOf(elemento._id) >= 0" class="w3-button" ng-click="$ctrl.togliDaiPreferiti(elemento._id)">
+                            <i class="fa fa-heart" style="color:red" aria-hidden="true"></i>                            
+                        </button>
+                    </p>
+                </div>
+                <div class="w3-cell w3-cell-top w3-center" style="padding: 5px;">
+                    <p>
+                        <span class="w3-small">QTY:</span>
+                        <p> {{elemento.giacenza}}</p>
+                    </p>
+                    <p style="margin-top: 5px;">
+                        <button class="w3-button w3-red" ng-click="$ctrl.mettiNelCarrello(elemento._id)">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </button>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>

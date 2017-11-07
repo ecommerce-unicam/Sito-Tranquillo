@@ -1,0 +1,161 @@
+<!--#######################-->
+<!--#### REGISTRAZIONE ####-->
+<!--#######################-->
+<main class="w3-row">
+    <section style="margin: auto; max-width: 700px">
+        <div class="w3-col l12 w3-card-4">
+            <div class="w3-container w3-teal">
+                <hgroup>
+                    <h2 class="w3-center">REGISTRAZIONE PRIMO ADMIN</h2>
+                    <h5>Questo utente sarà il primo amministratore, usato per gestire tutto il sito.</h5>
+                </hgroup>
+            </div>
+
+            <div class="w3-container pa-15 w3-light-grey">
+
+                <form name="formValidation">
+
+                    <p class="w3-margin-top">
+                        <label for="Nome">Nome:</label>
+                        <input class="w3-input w3-border" type="text" name="nome" id="nome" placeholder="Antonio" ng-model="inputNome" ng-minlength="1"
+                            ng-maxlength="63" ng-pattern="/^[A-z]+$/" required>
+                        <div ng-messages="formValidation.nome.$error" ng-show="formValidation.nome.$dirty" style="color: red">
+                            <p ng-message="minlength">Il nome deve avere almeno un carattere</p>
+                            <p ng-message="maxlength">Il nome deve avere massimo 63 caratteri</p>
+                            <p ng-message="required">Il nome è richiesto</p>
+                            <p ng-message="pattern">Il nome può contenere solo lettere</p>
+                        </div>
+                    </p>
+
+
+                    <p class="w3-margin-top">
+                        <label for="Cognome">Cognome:</label>
+                        <input class="w3-input w3-border" name="cognome" type="text" id="cognome" placeholder="Zappalavigna" ng-model="inputCognome"
+                            ng-minlength="1" ng-maxlength="60" ng-pattern="/^[A-z]+$/" required>
+                        <div ng-messages="formValidation.cognome.$error" ng-show="formValidation.cognome.$dirty" style="color: red">
+                            <p ng-message="minlength">Il cognome deve avere almeno un carattere</p>
+                            <p ng-message="maxlength">Il cognome deve avere massimo 60 caratteri</p>
+                            <p ng-message="required">Il cognome è richiesto</p>
+                            <p ng-message="pattern">Il cognome può contenere solo lettere</p>
+                        </div>
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="Nome">Username:</label>
+                        <input class="w3-input w3-border" type="text" name="username" id="username" ng-model="inputUsername" required>
+                        <!--Da gestire la sua creazione, propongo di fare nome.cognome.numeroCasualetra0e1000-->
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="email">Email:</label>
+                        <input class="w3-input w3-border" name="email" type="email" id="email" ng-model="inputEmail" placeholder="richard@stallman.org"
+                            ng-pattern="/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,13}$/" required>
+                        <div ng-messages="formValidation.email.$error" ng-show="formValidation.email.$dirty" style="color: red">
+                            <p ng-message="required">Il tuo indizzo email è richiesto</p>
+                            <p ng-message="pattern">Il tuo indirizzo email non è valido</p>
+                        </div>
+                    </p>
+
+                    <!-- GESTIONE STATO E PROVINCE -->
+                    <p class="w3-margin-top">
+                        <label for="state">Stato:
+                            <select class="w3-input w3-border" class="minimal" ng-model="country" required>
+                                <!--<option default>Italy</option>-->
+                                <option value="{{country}}" ng-repeat="country in $ctrl.listaStati">{{country}}</option>
+                            </select>
+                        </label>
+                    </p>
+
+                    <div ng-show="country == 'Italy'">
+                        <p class="w3-margin-top">
+                            <label for="province">Provincia:</label>
+                            <select class="w3-input w3-border" class="minimal" ng-model="province">
+                                <option value={{province}} ng-repeat="province in $ctrl.listaProvince">{{province}}</option>
+                            </select>
+
+                        </p>
+
+                        <p class="w3-margin-top">
+                            <label for="Nome">Comune:</label>
+                            <input class="w3-input w3-border" type="text" name="comune" id="comune" ng-model="comune" placeholder="Apiro" pattern="[A-Za-z*\s]{2,40}">
+                        </p>
+                    </diV>
+
+                    <p class="w3-margin-top">
+                        <label for="address">Indirizzo:</label>
+                        <input class="w3-input w3-border" name="indirizzo" type="text" id="indirizzo" ng-model="inputIndirizzo" placeholder="Via Federico Confalonieri 4"
+                            ng-pattern="[A-Za-z0-9'.-.*\s]{5,50}" required>
+                        <div ng-messages="formValidation.indirizzo.$error" ng-show="formValidation.indirizzo.$dirty" style="color: red">
+                            <p ng-message="required">Il tuo indizzo è richiesto</p>
+                            <p ng-message="pattern">Il tuo indirizzo non è valido</p>
+                        </div>
+                    </p>
+
+                    <!-- FINE GESTIONE STATO E PROVINCE -->
+
+                    <p class="w3-margin-top">
+                        <label for="telefono">Telefono:</label>
+                        <!-- pattern pensato solo per numeri italiani di cellulare o fisso e cmq non troppo specifico nel prefisso -->
+                        <input class="w3-input w3-border" type="tel" id="telefono" ng-model="inputTelefono" name="telefono" placeholder="0238591444"
+                            ng-pattern="/^[0-9]{5,10}$/" required>
+                        <div ng-messages="formValidation.telefono.$error" ng-show="formValidation.telefono.$dirty" style="color: red">
+                            <p ng-message="required">Il tuo numero di telefono è richiesto</p>
+                            <p ng-message="pattern">Il tuo numero di telefono non è valido</p>
+                        </div>
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="password">Password:</label>
+                        <input class="w3-input w3-border" name="password" type="password" id="password" ng-model="inputPassword" placeholder="Questa2embra1passComple224!"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,63}" required>
+                        <div ng-messages="formValidation.password.$error" ng-show="formValidation.password.$dirty" style="color: red">
+                            <p ng-message="required">La tua password è richiesta</p>
+                            <p ng-message="pattern">Almeno un NUMERO, un carattere MAIUSCOLO ed uno MINUSCOLO. Deve essere di tra gli 8 ed i 63 caratteri</p>
+                        </div>
+
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="password">Conferma Password:</label>
+                        <input class="w3-input w3-border" name="conferma-password" type="password" ng-model="inputConfermaPassword" id="conferma-password"
+                            placeholder="Devo davvero dirti cosa ci va qui?" required>
+                        <div ng-messages="formValidation.conferma-password.$error" ng-show="formValidation.conferma-password.$dirty" style="color: red">
+                            <p ng-message="required">La tua conferma della password è richiesta</p>
+                        </div>
+                        <div ng-hide="(formValidation.password.$error | json) != '{}' || !inputPassword">
+                            <p ng-if="inputPassword != inputConfermaPassword" style="color:red">Le password non coincidono
+                                <i class="fa fa-frown-o" aria-hidden="true"></i>
+                            </p>
+                            <p ng-if="inputPassword == inputConfermaPassword" style="color:green">Le password coincidono
+                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="domanda_segreta">Domanda segreta:</label>
+                        <input class="w3-input w3-border" type="text" name="domanda_segreta" id="domanda_segreta" ng-model="inputDomandaSegreta"
+                            placeholder="Qual'è il mio OS preferito" required>
+                        <div ng-messages="formValidation.domanda_segreta.$error" ng-show="formValidation.domanda_segreta.$dirty" style="color: red">
+                            <p ng-message="required">La tua domanda segreta è richiesta</p>
+                        </div>
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="risposta_segreta">Risposta segreta:</label>
+                        <input class="w3-input w3-border" name="risposta_segreta" type="text" id="risposta_segreta" ng-model="inputRispostaSegreta"
+                            placeholder="Scampia OS" required>
+                        <div ng-messages="formValidation.risposta_segreta.$error" ng-show="formValidation.risposta_segreta.$dirty" style="color: red">
+                            <p ng-message="required">La tua risposta segreta è richiesta</p>
+                        </div>
+                    </p>
+
+                    <p>
+                        <button ng-click="$ctrl.creaPrimoAdmin()" class="w3-button w3-red button-login">Registrati</button>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</main>

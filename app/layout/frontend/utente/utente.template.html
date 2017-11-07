@@ -1,0 +1,145 @@
+<section class="">
+
+    <div class="w3-row">
+        <p class="wrapper w3-container pa-15">
+            <span class="w3-col l10 m8 s12 w3-padding">
+                <a ui-sref="root"><button type="button" class="w3-btn w3-blue"><i class="fa fa-arrow-left" aria-hidden="true"></i>Torna alla home</button></a>
+            </span>
+            <span class="w3-col l2 m4 s12 w3-padding">
+            <a href="/storiaAcquisti" id="cart_contents"><button type="button" class="w3-btn w3-teal"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> Storico Acquisti</button></a>
+            </span>
+        </p>
+        <hr style="padding: 0; margin: 0;">
+    </div>
+
+    <div class="wrapper">
+
+        <h3 class="w3-center pa-15 w3-text-teal" ng-if="$ctrl.utente"><span class="w3-text-black">Profilo utente di</span> {{$ctrl.utente.nome}} {{$ctrl.utente.cognome}}</h3>
+
+        <div class="w3-col w3-container pa-15 w3-light-grey margin-bottom-1" ng-if="$ctrl.utente && richiestaEliminazione === 0">
+
+            <form name="formValidation">
+
+                <p class="w3-margin-top">
+                    <label for="email">Email:</label>
+                    <input class="w3-input w3-border" name="email" type="email" id="email" ng-model="$ctrl.utente.email" placeholder="richard@stallman.org"
+                        ng-pattern="/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,13}$/">
+                    <div ng-messages="formValidation.email.$error" ng-show="formValidation.email.$dirty" style="color: red">
+                        <p ng-message="pattern">Il tuo indirizzo email non è valido</p>
+                    </div>
+                </p>
+
+                <!-- GESTIONE STATO E PROVINCE -->
+                <p class="w3-margin-top">
+                    <label for="stato">Stato:
+                        <select class="w3-input w3-border w3-round" class="minimal" ng-model="$ctrl.utente.stato" name="stato" id="stato">
+                            <!--<option default>Italy</option>-->
+                            <option value="{{stato}}" ng-repeat="stato in stati">{{stato}}</option>
+                        </select>
+                    </label>
+                </p>
+
+                <div ng-show="$ctrl.utente.stato === 'Italy'">
+                    <p class="w3-margin-top">
+                        <label for="provincia">Provincia:</label>
+                        <select class="w3-input w3-border w3-round" class="minimal" ng-model="$ctrl.utente.provincia" name="provincia" id="provincia">
+                            <option value={{provincia}} ng-repeat="provincia in province">{{provincia}}</option>
+                        </select>
+
+                    </p>
+
+                    <p class="w3-margin-top">
+                        <label for="comune">Comune:</label>
+                        <input class="w3-input w3-border" type="text" name="comune" id="comune" ng-model="$ctrl.utente.comune" placeholder="Apiro"
+                            pattern="[A-Z][a-z*\s]{2,20}">
+                    </p>
+                </diV>
+
+                <p class="w3-margin-top">
+                    <label for="address">Indirizzo:</label>
+                    <input class="w3-input w3-border" name="indirizzo" type="text" id="indirizzo" ng-model="$ctrl.utente.indirizzo" placeholder="Via Federico Confalonieri 4"
+                        ng-pattern="[A-Za-z0-9'.-.*\s]{5,50}">
+                    <div ng-messages="formValidation.indirizzo.$error" ng-show="formValidation.indirizzo.$dirty" style="color: red">
+                        <p ng-message="pattern">Il tuo indirizzo non è valido</p>
+                    </div>
+                </p>
+
+                <!-- FINE GESTIONE STATO E PROVINCE -->
+
+                <p class="w3-margin-top">
+                    <label for="telefono">Telefono:</label>
+                    <!-- pattern pensato solo per numeri italiani di cellulare o fisso e cmq non troppo specifico nel prefisso -->
+                    <input class="w3-input w3-border w3-round" type="tel" id="telefono" ng-model="$ctrl.utente.telefono" name="telefono" placeholder="0238591444"
+                        ng-pattern="/^[0-9]{5,10}$/">
+                    <div ng-messages="formValidation.telefono.$error" ng-show="formValidation.telefono.$dirty" style="color: red">
+                        <p ng-message="pattern">Il tuo numero di telefono non è valido</p>
+                    </div>
+                </p>
+
+                <p class="w3-margin-top">
+                    <label for="password">Password:</label>
+                    <input class="w3-input w3-border w3-round" name="password" type="password" id="password" ng-model="inputPassword" placeholder="Questa2embra1passComple224!"
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,63}">
+                    <div ng-messages="formValidation.password.$error" ng-show="formValidation.password.$dirty" style="color: red">
+                        <p ng-message="pattern">Almeno un NUMERO, un carattere MAIUSCOLO ed uno MINUSCOLO. Deve essere di tra gli 8 ed i 63 caratteri</p>
+                    </div>
+
+                </p>
+                <p class="w3-margin-top">
+                    <label for="password">Conferma Password:</label>
+                    <input class="w3-input w3-border w3-round" name="conferma-password" type="password" ng-model="inputConfermaPassword" id="conferma-password"
+                        placeholder="Devo davvero dirti cosa ci va qui?">
+                    <div ng-messages="formValidation.conferma-password.$error" ng-show="formValidation.conferma-password.$dirty" style="color: red">
+                        <!-- <p ng-message="required">La tua conferma della password è richiesta</p> -->
+                    </div>
+                    <div ng-hide="(formValidation.password.$error | json) != '{}' && inputPassword != ''">
+                        <p ng-if="inputPassword != inputConfermaPassword" style="color:red">Le password non coincidono
+                            <i class="fa fa-frown-o" aria-hidden="true"></i>
+                        </p>
+                        <p ng-if="inputPassword == inputConfermaPassword" style="color:green">Le password coincidono
+                            <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        </p>
+                    </div>
+                </p>
+
+                <p class="w3-margin-top">
+                    <label for="domanda_segreta">Domanda segreta:</label>
+                    <input class="w3-input w3-border" type="text" name="domanda_segreta" id="domanda_segreta" ng-model="$ctrl.utente.domanda_segreta"
+                        placeholder="Qual'è il mio SO preferito">
+                    <div ng-messages="formValidation.domanda_segreta.$error" ng-show="formValidation.domanda_segreta.$dirty" style="color: red">
+                    </div>
+                </p>
+
+                <p class="w3-margin-top">
+                    <label for="risposta_segreta">Risposta segreta:</label>
+                    <input class="w3-input w3-border" name="risposta_segreta" type="text" id="risposta_segreta" ng-model="inputRispostaSegreta"
+                        placeholder="Scampia OS">
+                    <div ng-messages="formValidation.risposta_segreta.$error" ng-show="formValidation.risposta_segreta.$dirty" style="color: red">
+                        <p ng-message="required">La tua risposta segreta è richiesta</p>
+                    </div>
+                </p>
+
+                <div class="w3-col l12 w3-center margin-top-1">
+                    <p class="w3-show-inline-block pa-15">
+                        <button ng-click="$ctrl.aggiornaUtente()" class="w3-btn w3-border w3-round w3-green">Aggiorna utente</button>
+                    </p>
+                    <p class="w3-show-inline-block pa-15">
+                        <button ng-click="$ctrl.chiediConferma()" class="w3-btn w3-border w3-round w3-red">Elimina utente</button>
+                    </p>
+                </div>
+            </form>
+
+        </div>
+
+        <h3 class="w3-tag w3-red w3-center w3-padding" ng-if="!$ctrl.utente">Devi essere loggato per poter modificare il profilo.</h3>
+        <div ng-if="richiestaEliminazione === 1">
+            <p>Sei davvero sicuro di voler eliminare il tuo account utente? Quest'azione non è reversibile.</p>
+            <p>
+                <button ng-click="$ctrl.tornaIndietro()" class="w3-button w3-red">No, torna indietro</button>
+            </p>
+            <p>
+                <button ng-click="$ctrl.eliminaUtente()" class="w3-button w3-red">Sì, elimina utente</button>
+            </p>
+        </div>
+    </div>
+</section>
