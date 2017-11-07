@@ -1,5 +1,5 @@
-# SITO TRANQUILLO
-Sito specializzato nella vendita di estrattori di succo di tutti i tipi, approvato dall'Associazione Mamme italiane.
+# Sito Tranquillo
+E-commerce specializzato nella vendita di estrattori di succo di tutti i tipi, approvato dall'Associazione Mamme italiane.
 
 Un bel giorno la mamma di Corrado gli manda un messaggio vocale su Whatsapp, chiedendogli di cercare un sito tranquillo che venda estrattori economici. Eccolo.
 
